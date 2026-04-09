@@ -1,3 +1,5 @@
+package day03;
+
 public class ConditionalStatementDemo {
 
     public static void main(String[] args) {

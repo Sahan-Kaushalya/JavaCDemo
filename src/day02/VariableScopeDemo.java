@@ -1,3 +1,5 @@
+package day02;
+
 public class VariableScopeDemo {
 
     // instance variable
@@ -67,7 +69,7 @@ public class VariableScopeDemo {
 
 
         double anotherLocalVariable = VariableScopeDemo.staticMethod();
-        System.out.println("Accessing static variable From VariableScopeDemo " + anotherLocalVariable);
+        System.out.println("Accessing static variable From day02.VariableScopeDemo " + anotherLocalVariable);
     }
 
 }

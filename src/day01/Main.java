@@ -1,3 +1,5 @@
+package day01;
+
 public class Main {
     public static void dataType(){
         int a =10;

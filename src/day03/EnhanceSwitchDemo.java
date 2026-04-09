@@ -1,3 +1,5 @@
+package day03;
+
 public class EnhanceSwitchDemo {
     public static void main(String[] args) {
         weekDayFinder(1);

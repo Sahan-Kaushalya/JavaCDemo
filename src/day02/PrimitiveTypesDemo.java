@@ -1,3 +1,5 @@
+package day02;
+
 public class PrimitiveTypesDemo {
     public static void main(String[] args) {
         // Primitive Types in java
