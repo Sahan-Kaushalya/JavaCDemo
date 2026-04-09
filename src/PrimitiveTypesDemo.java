@@ -8,6 +8,7 @@ public class PrimitiveTypesDemo {
         char charValue = 'A';
 
         // Printing the values of the variables
+
         System.out.println("Integer Value: " + intValue);
         System.out.println("Double Value: " + doubleValue);
         System.out.println("Boolean Value: " + booleanValue);
