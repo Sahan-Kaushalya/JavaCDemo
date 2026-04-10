@@ -47,6 +47,21 @@ public class NestedLoopDemo {
         }
 
         System.out.println("\n");
+        int rowCount = 5;
+        for (int i = 1; i <= rowCount; i++) {
+
+            for (int j = 1; j <=rowCount-i; j++) {
+                System.out.print(" ");
+            }
+
+            for (int k = 1; k<= i; k++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("\n");
         int newRows = 5;
         for (int i = 1; i <= newRows; i++) {
             for (int j = 1; j <= (newRows - i) * 2; j++) {
