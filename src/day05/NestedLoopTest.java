@@ -37,13 +37,10 @@ public class NestedLoopTest {
             for(int j=1;j<=spaceCount;j++){
                 System.out.print(" ");
             }
-
             spaceCount --;
-
             for (int k=1; k<= starCount; k++){
                 System.out.print("*");
             }
-
             System.out.println();
             starCount = starCount+2;
         }
