@@ -20,5 +20,22 @@ public class TwoDArrayDemo {
             }
             System.out.println();
         }
+
+        int[][] anotherMatrix = new int[2][3]; // 2 rows and 3 columns
+
+        anotherMatrix[0][0] = 10;
+        anotherMatrix[0][1] = 20;
+        anotherMatrix[0][2] = 30;
+        anotherMatrix[1][0] = 40;
+        anotherMatrix[1][1] = 50;
+        anotherMatrix[1][2] = 60;
+
+        System.out.println("\nAnother Matrix:");
+        for (int i = 0; i < anotherMatrix.length; i++) {
+            for (int j = 0; j < anotherMatrix[i].length; j++) {
+                System.out.print(anotherMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
