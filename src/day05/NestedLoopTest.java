@@ -21,11 +21,11 @@ public class NestedLoopTest {
          *
          *   Row  Stars pattern & logic
          *
-         *   1.    1 ->  n-1 then 1+2 = 3
-         *   2.    3 ->  n-2 then 3+2 = 5
-         *   3.    5 ->  n-3 then 5+2 = 7
-         *   4.    7 ->  n-4 then 7+2 = 9
-         *   5.    9 ->  n-5 then 9+2 = 11
+         *   1.    1 ->  n-1 then   1+2 = 3
+         *   2.    3 ->  n-2 then   3+2 = 5
+         *   3.    5 ->  n-3 then   5+2 = 7
+         *   4.    7 ->  n-4 then   7+2 = 9
+         *   5.    9 ->  n-5 then   9+2 = 11
          */
 
         System.out.println("\n");
