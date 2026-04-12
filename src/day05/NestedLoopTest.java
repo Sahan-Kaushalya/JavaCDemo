@@ -42,7 +42,7 @@ public class NestedLoopTest {
             for (int k=1; k<= starCount; k++){
                 System.out.print("*");
             }
-            
+
             System.out.println();
             starCount = starCount+2;
         }
