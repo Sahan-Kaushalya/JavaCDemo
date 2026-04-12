@@ -14,6 +14,7 @@ public class TwoDArrayDemo {
         int y = matrix[0].length; // Number of columns (assuming all rows have
 
         // Displaying the 2D array
+        System.out.println("\n2D Array:");
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -34,6 +35,20 @@ public class TwoDArrayDemo {
         for (int i = 0; i < anotherMatrix.length; i++) {
             for (int j = 0; j < anotherMatrix[i].length; j++) {
                 System.out.print(anotherMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Example: 2D array with fixed rows but varying column numbers (jagged array)
+        int[][] jaggedArray = new int[3][]; // 3 rows, columns can vary
+        jaggedArray[0] = new int[] {1, 2}; // 2 columns in row 0
+        jaggedArray[1] = new int[] {3, 4, 5}; // 3 columns in row 1
+        jaggedArray[2] = new int[] {6}; // 1 column in row 2
+
+        System.out.println("\nJagged Array:");
+        for (int i = 0; i < jaggedArray.length; i++) {
+            for (int j = 0; j < jaggedArray[i].length; j++) {
+                System.out.print(jaggedArray[i][j] + " ");
             }
             System.out.println();
         }
