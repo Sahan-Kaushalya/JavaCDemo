@@ -4,6 +4,10 @@ public class ConstructorChainingDemo {
     private String name;
     private int age;
 
+    {
+        System.out.println("Initializer Block Called");
+    }
+
     // Default constructor
     public ConstructorChainingDemo() {
         // Chaining to the parameterized constructor using 'this'
