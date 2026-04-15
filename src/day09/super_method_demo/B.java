@@ -33,4 +33,12 @@ public class B extends A{
         super(a,a1);
         this.a = a1;
     }
+
+    protected void testMethod(){
+        System.out.println("this is protected for Class B");
+    }
+
+    private void privateMethod(){
+        System.out.println("this is private for Class B");
+    }
 }
