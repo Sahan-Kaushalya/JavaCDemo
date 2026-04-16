@@ -1,16 +1,17 @@
 package day11.interfaceDemo;
 
-public class BocATM implements ATM{
+public class BocATM implements ATM {
     private double balance;
 
     public BocATM(double initialBalance) {
         this.balance = initialBalance;
+        displayWelcomeMessage();
     }
 
-/*@Override
-public void displayWelcomeMessage() {
-    System.out.println("Welcome to BOC ATM! Please select your transaction.");
-}*/
+    @Override
+    public void displayWelcomeMessage() {
+        System.out.println("Welcome to BOC ATM! Please select your transaction.");
+    }
 
     @Override
     public String withdraw(double amount) {
