@@ -4,7 +4,7 @@ This document covers the advanced OOP design principles of Coupling, Dependency 
 
 ---
 
-## 1. Coupling
+## 1. Coupling & Decoupling
 
 **Coupling** refers to the degree of direct knowledge that one class has about another. In other words, it's the measure of how dependent two classes are on each other.
 
@@ -25,9 +25,10 @@ This document covers the advanced OOP design principles of Coupling, Dependency 
   }
   ```
 
-### Loose Coupling
+### Loose Coupling (Decoupling)
 - **What it is:** A state where classes are designed to interact with each other through a common interface, without knowing the specific implementation details of the other class.
 - **The Goal:** To create a flexible system where components can be swapped out easily without affecting other parts of the system. This is a core principle of good object-oriented design.
+- **How to Achieve:** Loose coupling is achieved through techniques like **Dependency Injection** and **Design Patterns** (like the Factory Pattern).
 
 ---
 
@@ -63,7 +64,7 @@ The dependency is provided through the class constructor at the exact moment the
   Laptop myLaptop = new Laptop("Asus", "ZenBook", dellHD); // Constructor Injection
   ```
 
-#### 2. Setter Injection
+#### 2. Setter Injection (Method Injection)
 The dependency is provided through a public "setter" method after the object has already been created.
 - **Best for:** Optional dependencies, or dependencies that might need to be swapped out or changed later during the program's execution.
 - **Example:** A `Laptop` might want to swap its hard drive later.
@@ -77,6 +78,32 @@ The dependency is provided through a public "setter" method after the object has
   Laptop myLaptop = new Laptop();
   HardDisk asusHD = new AsusHD("1TB");
   myLaptop.setHardDisk(asusHD); // Setter Injection
+  ```
+
+#### 3. Interface Injection
+The dependency is provided through a dedicated method defined in an interface. The class implements this interface, which forces it to have a method for receiving the dependency.
+- **Best for:** Complex scenarios where you want to ensure a class is explicitly designed to receive certain types of dependencies. It's less common than Constructor or Setter injection.
+- **Example:**
+  ```java
+  // 1. Create an interface for the injection method
+  public interface HardDiskInjectable {
+      void injectHardDisk(HardDisk hardDisk);
+  }
+
+  // 2. Implement the interface in the Laptop class
+  public class Laptop implements HardDiskInjectable {
+      private HardDisk hardDisk;
+      
+      @Override
+      public void injectHardDisk(HardDisk hardDisk) {
+          this.hardDisk = hardDisk;
+      }
+  }
+
+  // 3. Usage
+  Laptop myLaptop = new Laptop();
+  HardDisk dellHD = new DellHD("256GB");
+  myLaptop.injectHardDisk(dellHD); // Interface Injection
   ```
 
 ---
