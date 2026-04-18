@@ -1,6 +1,6 @@
 # JavaCDemo - Day 13 Theory & Examples
 
-This document serves as an extension of the main JavaCDemo repository, specifically covering advanced concepts introduced in Day 13, focusing on **Sealed Classes** and the **SOLID Principles**.
+This document serves as an extension of the main JavaCDemo repository, specifically covering advanced concepts introduced in Day 13, focusing on **Sealed Classes**, the **SOLID Principles**, and the **Singleton Design Pattern**.
 
 ---
 
@@ -138,3 +138,70 @@ The **SOLID principles** are five foundational object-oriented design principles
 - **Real World Example:** You plug your laptop into a wall outlet (an Interface). The laptop (High-level module) doesn't care if the electricity is coming from a solar panel, a wind turbine, or a coal plant (Low-level modules). It just relies on the outlet interface.
 - **Code Example (`day13.SOLID.Dependency_Inversion`):**
   A `DellLaptop.java` should not depend directly on a concrete `AsusHardDisk.java` class. Instead, both the Laptop and the Asus disk should depend on a `HardDisks.java` interface. This allows the laptop to accept a `DellHardDisk` or `HitachiHardDisk` seamlessly via Dependency Injection.
+
+---
+
+## 3. Singleton Design Pattern
+
+The **Singleton Pattern** is a creational design pattern that guarantees a class has **one, and only one, instance (object)** throughout the entire lifecycle of an application, while providing a global point of access to that instance.
+
+### Why and When to Use Singleton?
+- **Purpose:** To strictly control access to a shared resource or centralize configuration management.
+- **When to Use:** You use a Singleton when exactly one object is needed to coordinate actions across the system. 
+  - Examples: A database connection pool, a file logger, an application configuration manager, or a hardware interface manager (like a printer spooler).
+
+### The Problem It Solves
+If multiple parts of your application independently create `new DatabaseConnection()` objects, you will quickly exhaust the database's connection limit and crash the system. By forcing the entire app to share a single `DatabaseConnection` instance, you protect the resource.
+
+### How to Implement a Singleton
+Creating a true Singleton requires three specific steps:
+1. **Private Constructor:** Make the constructor `private` so that no external class can use the `new` keyword to create an instance.
+2. **Private Static Variable:** Create a `private static` variable inside the class to hold the single, unique instance of the class itself.
+3. **Public Static Getter (Global Access Point):** Create a `public static` method (usually named `getInstance()`) that checks if the instance already exists. If it does not, it creates it. If it does, it simply returns the existing one.
+
+### Code Example (`day13.SingletonDP`)
+
+**1. The Singleton Class**
+```java
+public class Singleton {
+
+    // 1. Private static variable to hold the one and only instance
+    private static Singleton singleton;
+
+    // 2. Private constructor prevents anyone else from calling 'new Singleton()'
+    private Singleton() { 
+    }
+
+    // 3. Public static getter to provide global access to the instance
+    public static Singleton getInstance() {
+        // Lazy Initialization: Only create it if it doesn't exist yet
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+        return singleton; // Always return the exact same instance
+    }
+}
+```
+
+**2. Testing the Singleton**
+```java
+public class Test {
+    public static void main(String[] args) {
+        // Request the instance twice
+        Singleton singleton1 = Singleton.getInstance();
+        Singleton singleton2 = Singleton.getInstance();
+
+        // Verify that both variables are pointing to the exact same object in memory
+        if (singleton1 == singleton2) {
+            System.out.println("Both references point to the same instance.");
+        } else {
+            System.out.println("References point to different instances.");
+        }
+    }
+}
+```
+
+**Expected Output:**
+```text
+Both references point to the same instance.
+```
