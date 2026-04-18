@@ -1,6 +1,6 @@
 # JavaCDemo - Day 13 Theory & Examples
 
-This document serves as an extension of the main JavaCDemo repository, specifically covering advanced concepts introduced in Day 13, focusing on **Sealed Classes**.
+This document serves as an extension of the main JavaCDemo repository, specifically covering advanced concepts introduced in Day 13, focusing on **Sealed Classes** and the **SOLID Principles**.
 
 ---
 
@@ -92,3 +92,49 @@ public class Main {
 Drawing a circle
 Drawing a rectangle
 ```
+
+---
+
+## 2. The SOLID Principles
+
+The **SOLID principles** are five foundational object-oriented design principles intended to make software designs more understandable, flexible, and maintainable.
+
+### S - Single Responsibility Principle (SRP)
+- **Theory:** A class should have one, and only one, reason to change. It should have only one job or responsibility.
+- **Why use it:** If a class handles multiple responsibilities (e.g., calculating business logic *and* writing to a database), changing the database logic might accidentally break the business logic. SRP prevents this coupling.
+- **Real World Example:** A Chef (Class) should cook food. A Waiter (Class) should serve food. If the Chef tries to cook *and* serve, they will get overwhelmed and make mistakes.
+- **Code Example (`day13.SOLID.Single_Responsibility`):**
+  Instead of having one `Transaction` class that handles the math *and* saving to the database, you split them:
+  - `TransactionService.java` (Handles only business logic/math).
+  - `TransactionRepository.java` (Handles only database save/load operations).
+
+### O - Open/Closed Principle (OCP)
+- **Theory:** Software entities (classes, modules, functions, etc.) should be **open for extension, but closed for modification**.
+- **Why use it:** You should be able to add new functionality without touching existing, tested, and working code. Touching old code risks introducing new bugs.
+- **Real World Example:** A blender is "closed for modification" (you can't change the motor inside), but "open for extension" (you can put different attachments on top, like a smoothie maker or a food processor).
+- **Code Example (`day13.SOLID.Open_Closed`):**
+  Instead of writing an `if/else` block inside a single `PaymentProcessor` class (e.g., `if (type == "Card") {...}`), you create a base `Payment` interface.
+  When you need to add Crypto payments, you don't modify the existing code; you simply create a new `CryptoPayment.java` class that extends the `Payment` interface.
+
+### L - Liskov Substitution Principle (LSP)
+- **Theory:** Objects of a superclass should be replaceable with objects of its subclasses without breaking the application. What the parent class can do, the child class must *also* be able to do.
+- **Why use it:** It ensures that inheritance is used correctly. If a child class overrides a method to throw an `UnsupportedOperationException`, it violates LSP because it breaks the promise made by the parent.
+- **Real World Example:** If you have a parent class `Bird` with a method `fly()`, creating a child class `Penguin` violates LSP because penguins can't fly. The program will crash if it expects all `Bird` objects to fly. You should instead have a `FlyingBird` and `NonFlyingBird` base class.
+- **Code Example (`day13.SOLID.Liskov_Substitution`):**
+  In the Factory Pattern example, `AsusHD.java` and `DellHD.java` can seamlessly replace the generic `HardDisk.java` interface without the `Laptop.java` class breaking or crashing.
+
+### I - Interface Segregation Principle (ISP)
+- **Theory:** Clients should not be forced to implement interfaces they don't use. It is better to have many small, specific interfaces than one large, general-purpose interface.
+- **Why use it:** "Fat" interfaces force classes to implement methods that are totally useless to them, leading to blank methods or methods that just throw exceptions.
+- **Real World Example:** You buy a new TV. The remote has a giant "Netflix" button. But you don't have a Netflix account. The remote is a "fat interface" that forced a button on you that you can't use.
+- **Code Example (`day13.SOLID.Interface_Segregation`):**
+  Instead of having one `Worker` interface with `work()` and `eat()`, you segregate them into `worker.java` (work method) and `eatable.java` (eat method).
+  - A `HumanWorker.java` can implement both.
+  - A `RobotWorker.java` only implements `worker.java` (because robots don't eat). It isn't forced to write blank code for an `eat()` method it doesn't need!
+
+### D - Dependency Inversion Principle (DIP)
+- **Theory:** High-level modules should not depend on low-level modules. Both should depend on abstractions (interfaces). Details should depend on abstractions, not the other way around.
+- **Why use it:** It fundamentally achieves **Loose Coupling**. High-level business logic shouldn't care about low-level hardware or database details.
+- **Real World Example:** You plug your laptop into a wall outlet (an Interface). The laptop (High-level module) doesn't care if the electricity is coming from a solar panel, a wind turbine, or a coal plant (Low-level modules). It just relies on the outlet interface.
+- **Code Example (`day13.SOLID.Dependency_Inversion`):**
+  A `DellLaptop.java` should not depend directly on a concrete `AsusHardDisk.java` class. Instead, both the Laptop and the Asus disk should depend on a `HardDisks.java` interface. This allows the laptop to accept a `DellHardDisk` or `HitachiHardDisk` seamlessly via Dependency Injection.
