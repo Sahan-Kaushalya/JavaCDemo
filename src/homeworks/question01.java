@@ -1,18 +1,23 @@
 package homeworks;
 
 
+import java.util.Arrays;
+
 // Array : {1,8,20,400,5000,67,34,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0}
 // 2nd largest value
 // using math class
 public class question01 {
     public static void main(String[] args) {
+
         double[] arrayDataSet = {1,8,20,400,5000,67,34,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0};
         selectionSort(arrayDataSet);
         System.out.println("\nUsing Selection Sort Algorithm");
         System.out.println("2nd largest value is: "+arrayDataSet[arrayDataSet.length-2]);
 
+        double[] arrayDataSet2 = {1,8,20,400,5000,67,34,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0};
         System.out.println("\nUsing Math Class");
-        double value = Math.round(arrayDataSet[arrayDataSet.length-2]*100.0)/100.0;
+        Arrays.sort(arrayDataSet2);
+        double value = Math.round(arrayDataSet2[arrayDataSet2.length-2]*100.0)/100.0;
         System.out.println("2nd largest value is: "+value);
     }
 
